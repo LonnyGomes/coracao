@@ -10,7 +10,8 @@
   "author": "Lonny Gomes",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.7.0"
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0"
   },
   "devDependencies": {
     "fs-extra": "^7.0.1"
