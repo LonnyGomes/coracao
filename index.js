@@ -10,8 +10,8 @@ router.get('/', (ctx, next) => {
     ctx.body = count.loadCount();
 });
 
-router.get('/increment', (ctx, next) => {
-    ctx.body = count.incrementCount();
+router.post('/increment', async (ctx) => {
+    ctx.body = await count.incrementCount();
 });
 
 app

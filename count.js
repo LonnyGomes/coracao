@@ -19,7 +19,8 @@ module.exports = class Count {
     async incrementCount() {
         const curCount = await this.loadCount();
         curCount.total += 1;
+        await this.saveCount(curCount.total);
 
-        return this.saveCount(curCount.total);
+        return this.loadCount();
     }
 };
