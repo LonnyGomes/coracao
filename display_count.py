@@ -8,7 +8,7 @@ if not os.path.exists(pipe_path):
 
 # Open the fifo. We need to open in non-blocking mode or it will stalls until
 # someone opens it for writting
-pipe_fd = os.open(pipe_path, os.O_RDONLY | os.O_NONBLOCK)
+pipe_fd = os.open(pipe_path, os.O_RDONLY)
 with os.fdopen(pipe_fd) as pipe:
     while True:
         message = pipe.read()
