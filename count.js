@@ -18,15 +18,16 @@ module.exports = class Count {
     async incrementCount() {
         const curCount = await this.loadCount();
         curCount.total += 1;
-        await this.saveCount(curCount.total);
 
-        return this.updateDisplay(curCount.total);
+        // update the hardware display
+        this.updateDisplay(curCount.total);
+
+        return await this.saveCount(curCount.total);
     }
 
-    async updateDisplay(countVal) {
-        const val = isNaN(countVal) ? 0 : countVal;
-        const cmd = `echo -n '${val}' > /tmp/countpipe`;
-
-        return await exec(cmd);
+    updateDisplay(countVal) {
+        const socket = fs.createWriteStream('/tmp/countpipe');
+        socket.write(`${countVal}`);
+        socket.close();
     }
 };
