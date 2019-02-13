@@ -5,6 +5,13 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 module.exports = class Count {
+    async init() {
+        const curCount = await this.loadCount();
+        this.updateDisplay(curCount.total);
+
+        return Promise.resolve(curCount);
+    }
+
     loadCount() {
         return fs.readJSONSync(filename);
     }

@@ -19,3 +19,6 @@ app
   .use(router.allowedMethods());
 
 app.listen(3000);
+
+// now init the count display
+count.init();
